@@ -91,3 +91,31 @@ btn.addEventListener('click', function() {
 this.classList.toggle('selected');
 });
 });
+
+
+
+
+document.getElementById('submitNew').addEventListener('click', function() {
+    const selectedHelp = Array.from(document.querySelectorAll('#Section1 .dropdown-button.selected')).map(btn => btn.textContent).join(', ');
+    const selectedAllergens = Array.from(document.querySelectorAll('#Section2 .dropdown-button.selected')).map(btn => btn.textContent).join(', ');
+
+    const currentTime = new Date().toISOString().replace(/[-T:]/g, '').split('.')[0];
+    const fileName = `userinputs_${currentTime}.txt`;
+
+    const fileContent = `Needs: ${selectedHelp}\nAllergens: ${selectedAllergens}`;
+
+    download(fileName, fileContent);
+});
+
+function download(filename, content) {
+    const element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+    element.setAttribute('download', filename);
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+}
