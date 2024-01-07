@@ -22,25 +22,6 @@ document.getElementById('title').addEventListener('click', function() {
 );
 
 
-
-// Function to create a card for each product
-// function createCard(name) {
-//   const cardDiv = document.createElement("div");
-//   cardDiv.classList.add("column");
-  
-//   const card = document.createElement("div");
-//   card.classList.add("card");
-
-//   const cardHeader = document.createElement("h3");
-//   cardHeader.classList.add("card-number-header");
-//   cardHeader.textContent = name;
-
-//   card.appendChild(cardHeader);
-//   cardDiv.appendChild(card);
-
-//   return cardDiv;
-// }
-
 //Nik's Stuff
 
 let cardCounter = 1; // Initialize a counter for the card numbers
@@ -82,30 +63,31 @@ function createCard(name) {
 
 
 
-  // Add event listeners for mouse movement
-  card.addEventListener("mousemove", handleMouseMove);
-  card.addEventListener("mouseleave", resetTilt);
+   // Add event listeners for mouse movement
+   card.addEventListener("mousemove", handleMouseMove);
+   card.addEventListener("mouseleave", resetTilt);
+ 
+   return cardDiv;
+ }
+ 
+ // Function to handle mouse movement and update the card's tilt
+ function handleMouseMove(event) {
+   const card = event.currentTarget;
+   const rect = card.getBoundingClientRect();
+   const mouseX = (event.clientX - rect.left) / card.offsetWidth - 3;
+   const mouseY = (event.clientY - rect.top) / card.offsetHeight - 3;
+ 
+   card.style.setProperty("--mouse-x", mouseX);
+   card.style.setProperty("--mouse-y", mouseY);
+ }
+ 
+ // Function to reset the card's tilt when the mouse leaves
+ function resetTilt(event) {
+   const card = event.currentTarget;
+   card.style.setProperty("--mouse-x", 0);
+   card.style.setProperty("--mouse-y", 0);
+ }
 
-  return cardDiv;
-}
-
-// Function to handle mouse movement and update the card's tilt
-function handleMouseMove(event) {
-  const card = event.currentTarget;
-  const rect = card.getBoundingClientRect();
-  const mouseX = (event.clientX - rect.left) / card.offsetWidth - 0.5;
-  const mouseY = (event.clientY - rect.top) / card.offsetHeight - 0.5;
-
-  card.style.setProperty("--mouse-x", mouseX);
-  card.style.setProperty("--mouse-y", mouseY);
-}
-
-// Function to reset the card's tilt when the mouse leaves
-function resetTilt(event) {
-  const card = event.currentTarget;
-  card.style.setProperty("--mouse-x", 0);
-  card.style.setProperty("--mouse-y", 0);
-}
 //end
 
 // Get the card container element
