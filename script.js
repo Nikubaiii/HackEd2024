@@ -7,7 +7,7 @@ const CSVToArray = (data, delimiter = ',', omitFirstRow = false) =>
     .split('\n')
     .map(v => v.split(delimiter));
 
-var dict = {"Product Type":0,"Product Name":1,"Price ($)":2,"Oily Skin":3,"Skin Tone":4,"Hydration":5,"Brightening":6,"Acne":7,"Dark Spots":8,"Wrinkles":9,"Eye Circles":10,"Scarring":11,"Blackheads":12,"Budget":13,"Fragrances":14,"Silicone":15,"Alcohol-free":16,"Cruelty-free":17,"Aluminum-free":18}
+var dict = {"Product Type":0,"Product Name":1,"Price ($)":2,"Oily Skin":3,"Skin Tone":4,"Hydration":5,"Brightening":6,"Acne":7,"Dark Spots":8,"Wrinkles":9,"Eye Circles":10,"Scarring":11,"Blackheads":12,"Budget":13,"Fragrances":14,"Silicone":15,"Alcohol":16,"Cruelty":17,"Aluminium":18}
 
 var products = CSVToArray(
 "Cleanser,First Aid Beauty Pure Skin Face Cleanser,32.5,7,6,8,6,7,8,5,5,7,6,5,1,1,0,1,1\n"+
@@ -129,7 +129,7 @@ clickedButton.classList.add('active');
 
 
 
-const dropdownButtons = document.querySelectorAll('.dropdown-button');
+const dropdownButtons = document.querySelectorAll('.middle-buttons button');
 
 dropdownButtons.forEach(function(btn) {
     
@@ -143,22 +143,52 @@ dropdownButtons.forEach(function(btn) {
 
 });
 
-function findTop5Indices(arr) {
+const dropdownButtons2 = document.querySelectorAll('.middle-buttons2 button');
+
+dropdownButtons2.forEach(function(btn) {
+    
+    btn.addEventListener('click', function() {
+
+        this.classList.toggle('selected');
+        this.classList[1] === 'selected' ? despise.push(this.id) : despise.splice(despise.indexOf(this.id),1);
+        console.log(despise);
+    
+    });
+
+});
+
+function findTopIndices(arr) {
     const indices = Array.from(arr.keys()); // Generate initial indices
     indices.sort((a, b) => arr[b] - arr[a]); // Sort indices based on array values
 
     // Return the first 5 indices (top 5 values)
-    return indices.slice(0, 5);
+    return indices;
 }
 
 document.getElementById('submitNew').addEventListener('click', function() {
+    var filteredProducts = []
+
+    for (let i = 0; i < products.length - 1; i++){
+        callPass = 0
+        for (let j = 0; j < despise.length; j++){
+            if (Number(products[i][dict[despise[j]]]) === 1){
+                callPass = 1
+            };
+        };
+
+        if (callPass === 0){
+            filteredProducts.push(products[i])
+        };
+
+    };
+
     var vals = []
 
-    for (let i = 0; i < products.length-1; i++){
+    for (let i = 0; i < filteredProducts.length-1; i++){
         var val = 0
 
         for (let j = 0; j < desires.length; j++){
-            val += Number(products[i][dict[desires[j]]])
+            val += Number(filteredProducts[i][dict[desires[j]]])
         };
         
         vals.push(val)
@@ -166,13 +196,23 @@ document.getElementById('submitNew').addEventListener('click', function() {
 
     console.log(vals)
 
-    indexes = findTop5Indices(vals)
+    indexes = findTopIndices(vals)
+    
+    var presetMax = 0
 
-    for (let i = 0; i < 5; i++){
-        console.log(products[indexes[i]][1])
+    if (indexes.length >= 5){
+        presetMax = 5
+    }
+
+    else{
+        presetMax = indexes.length
+    }
+
+    for (let i = 0; i < presetMax; i++){
+        console.log(filteredProducts[indexes[i]][1])
     };
 
-    // setTimeout(function() {
-    //     window.location.href = 'results.html';
-    // }, 10000);
+    setTimeout(function() {
+        window.location.href = 'results.html';
+    }, 250);
 });
