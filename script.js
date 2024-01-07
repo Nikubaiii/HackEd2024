@@ -142,35 +142,3 @@ document.getElementById('submitNew').addEventListener('click', function() {
         window.location.href = 'results.html';
     }, 250);
 });
-
-function generateText() {
-    // Generate text content for the file based on user inputs
-    // Concatenate 'Needs' and 'Allergens' data into a string
-    return `Needs: [list of needs]\nAllergens: [list of allergens]`;
-}
-
-function download(filename, text) {
-    // Create an invisible link element to trigger the download
-    const element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', filename);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-}
-
-document.getElementById('submitNew').addEventListener('click', function() {
-    // Hide the submit button
-    this.style.display = 'none';
-    
-    // Show the loader
-    const loader = document.querySelector('.loader');
-    loader.style.display = 'block';
-  
-    // Simulate loading for 3 seconds
-    setTimeout(function() {
-      // Redirect to the results page after 3 seconds
-      window.location.href = 'results.html';
-    }, 3000);
-});
