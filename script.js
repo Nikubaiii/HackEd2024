@@ -127,10 +127,7 @@ this.classList.toggle('selected');
 
 document.getElementById('submitNew').addEventListener('click', function() {
     // Generate and download the text file
-    const currentTime = new Date().toLocaleString().replace(/,/g, '').replace(/\//g, '_').replace(/ /g, '_').replace(/:/g, ''); // Timestamp for filename
-    const filename = `userinputs_${currentTime}.txt`;
     const text = generateText(); // Function to generate text content for the file
-    download(filename, text); // Function to download the file
 
     // Redirect to results page after a short delay (adjust time as needed)
     setTimeout(function() {
