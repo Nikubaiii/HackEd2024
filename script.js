@@ -140,5 +140,5 @@ document.getElementById('submitNew').addEventListener('click', function() {
 
     setTimeout(function() {
         window.location.href = 'results.html';
-    }, 250);
+    }, 10000);
 });

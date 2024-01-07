@@ -113,6 +113,13 @@ h1{
         color: #000000;
 }
 
+.dropdown-button:hover {
+    background-color: #954d00;
+    color: #ffffff;
+    box-shadow: 0px 15px 20px #954d0079;
+    transition: background-color 1.5s;
+}
+
 .dropdown-button.selected {
         background-color: #954d00;
         color: #ffffff;
@@ -121,7 +128,7 @@ h1{
 
 /* For DARK MODE button */
 .toggle-button {
-        background-color: #f0f0f0;
+        background-color: #b6aeae;
         border: none;
         padding: 10px 20px;
         cursor: pointer;
@@ -131,7 +138,7 @@ h1{
 
 /* For DARK MODE button */
 .toggle-button:hover {
-        background-color: #e0e0e0;
+        background-color: #898888;
 }
 
 .dropdown-select {
