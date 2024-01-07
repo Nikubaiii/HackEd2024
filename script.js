@@ -130,28 +130,10 @@ document.getElementById('submitNew').addEventListener('click', function() {
     const currentTime = new Date().toLocaleString().replace(/,/g, '').replace(/\//g, '_').replace(/ /g, '_').replace(/:/g, ''); // Timestamp for filename
     const filename = `userinputs_${currentTime}.txt`;
     const text = generateText(); // Function to generate text content for the file
-    // download(filename, text); // Function to download the file
+    download(filename, text); // Function to download the file
 
     // Redirect to results page after a short delay (adjust time as needed)
     setTimeout(function() {
         window.location.href = 'results.html';
     }, 2000);
 });
-
-function generateText() {
-    // Generate text content for the file based on user inputs
-    // Concatenate 'Needs' and 'Allergens' data into a string
-    return `Needs: [list of needs]\nAllergens: [list of allergens]`;
-}
-
-function download(filename, text) {
-    // Create an invisible link element to trigger the download
-    const element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', filename);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-}
-
