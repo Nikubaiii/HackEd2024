@@ -218,6 +218,7 @@ margin-top: 10vmax; */
    }
 
 
+
    .wrapper-loader {
     display: flex;
     justify-content: center;
@@ -244,3 +245,8 @@ margin-top: 10vmax; */
       transform: rotate(360deg);
     }
   }
+
+#title:hover {
+    cursor: pointer;
+}
+

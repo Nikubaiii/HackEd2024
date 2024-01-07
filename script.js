@@ -54,21 +54,23 @@ submitButton.style.fontSize = fontSize;
 
 
 document.getElementById('smallFont').addEventListener('click', function() {
-changeFontSize('12px', this.id);
-changeButtonFontSize('12px');
-});
-
-document.getElementById('normalFont').addEventListener('click', function() {
-changeFontSize('14px', this.id);
-changeButtonFontSize('14px');
-});
-
-document.getElementById('largeFont').addEventListener('click', function() {
-changeFontSize('16px', this.id);
-changeButtonFontSize('16px');
-});
-
-
+    changeFontSize('12px', this.id);
+    changeButtonFontSize('12px');
+  });
+  
+  document.getElementById('normalFont').addEventListener('click', function() {
+    changeFontSize('14px', this.id);
+    changeButtonFontSize('14px');
+  });
+  
+  document.getElementById('largeFont').addEventListener('click', function() {
+    changeFontSize('16px', this.id);
+    changeButtonFontSize('16px');
+  });
+  
+  document.getElementById('title').addEventListener('click', function() {
+    window.location.href = 'home.html';
+  });
 
 function toggleActive(clickedId) {
 
@@ -128,7 +130,7 @@ document.getElementById('submitNew').addEventListener('click', function() {
     const currentTime = new Date().toLocaleString().replace(/,/g, '').replace(/\//g, '_').replace(/ /g, '_').replace(/:/g, ''); // Timestamp for filename
     const filename = `userinputs_${currentTime}.txt`;
     const text = generateText(); // Function to generate text content for the file
-    download(filename, text); // Function to download the file
+    // download(filename, text); // Function to download the file
 
     //save settings locally
     const selectedMode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
