@@ -37,5 +37,21 @@
     </footer> 
 
 <script src="script.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Retrieve settings from local storage
+    const selectedMode = localStorage.getItem('selectedMode');
+    const selectedFontSize = localStorage.getItem('selectedFontSize');
+
+    // Apply settings to the new page
+    if (selectedMode === 'dark') {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+
+    document.body.style.fontSize = selectedFontSize;
+});
+</script>
 </body>
 

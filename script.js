@@ -130,6 +130,12 @@ document.getElementById('submitNew').addEventListener('click', function() {
     const text = generateText(); // Function to generate text content for the file
     download(filename, text); // Function to download the file
 
+    //save settings locally
+    const selectedMode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+    const selectedFontSize = document.body.style.fontSize;
+    localStorage.setItem('selectedMode', selectedMode);
+    localStorage.setItem('selectedFontSize', selectedFontSize);
+
     // Redirect to results page after a short delay (adjust time as needed)
     setTimeout(function() {
         window.location.href = 'results.html';
@@ -166,4 +172,4 @@ document.getElementById('submitNew').addEventListener('click', function() {
       // Redirect to the results page after 3 seconds
       window.location.href = 'results.html';
     }, 3000);
-  });
+});
