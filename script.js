@@ -95,47 +95,12 @@ this.classList.toggle('selected');
 });
 
 
-
-
-// document.getElementById('submitNew').addEventListener('click', function() {
-//     const selectedHelp = Array.from(document.querySelectorAll('#Section1 .dropdown-button.selected')).map(btn => btn.textContent).join(', ');
-//     const selectedAllergens = Array.from(document.querySelectorAll('#Section2 .dropdown-button.selected')).map(btn => btn.textContent).join(', ');
-
-//     const currentTime = new Date().toISOString().replace(/[-T:]/g, '').split('.')[0];
-//     const fileName = `userinputs_${currentTime}.txt`;
-
-//     const fileContent = `Needs: ${selectedHelp}\nAllergens: ${selectedAllergens}`;
-
-//     download(fileName, fileContent);
-// });
-
-// function download(filename, content) {
-//     const element = document.createElement('a');
-//     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
-//     element.setAttribute('download', filename);
-
-//     element.style.display = 'none';
-//     document.body.appendChild(element);
-
-//     element.click();
-
-//     document.body.removeChild(element);
-// }
-
-
-
-
 document.getElementById('submitNew').addEventListener('click', function() {
-    // Generate and download the text file
-    const currentTime = new Date().toLocaleString().replace(/,/g, '').replace(/\//g, '_').replace(/ /g, '_').replace(/:/g, ''); // Timestamp for filename
-    const filename = `userinputs_${currentTime}.txt`;
     const text = generateText(); // Function to generate text content for the file
-    // download(filename, text); // Function to download the file
 
-    // Redirect to results page after a short delay (adjust time as needed)
     setTimeout(function() {
         window.location.href = 'results.html';
-    }, 2000);
+    }, 250);
 });
 
 function generateText() {
@@ -143,15 +108,3 @@ function generateText() {
     // Concatenate 'Needs' and 'Allergens' data into a string
     return `Needs: [list of needs]\nAllergens: [list of allergens]`;
 }
-
-function download(filename, text) {
-    // Create an invisible link element to trigger the download
-    const element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', filename);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-}
-
