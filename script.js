@@ -153,3 +153,17 @@ function download(filename, text) {
     document.body.removeChild(element);
 }
 
+document.getElementById('submitNew').addEventListener('click', function() {
+    // Hide the submit button
+    this.style.display = 'none';
+    
+    // Show the loader
+    const loader = document.querySelector('.loader');
+    loader.style.display = 'block';
+  
+    // Simulate loading for 3 seconds
+    setTimeout(function() {
+      // Redirect to the results page after 3 seconds
+      window.location.href = 'results.html';
+    }, 3000);
+  });
