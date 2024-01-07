@@ -41,14 +41,42 @@ var products = CSVToArray(
 "Serum,Bigger Than Beauty Liquid Brilliance™ Super Serum,79,8,6,9,7,8,6,5,5,9,7,5,1,1,0,1,1\n",",",false);
 
 
-document.getElementById('toggleDarkLight').addEventListener('click', function() {
-    document.body.classList.toggle('dark-mode');
-    this.innerText = (document.body.classList.contains('dark-mode')) ? 'Light Mode' : 'Dark Mode';
+// document.getElementById('toggleDarkLight').addEventListener('click', function() {
+//     document.body.classList.toggle('dark-mode');
+//     this.innerText = (document.body.classList.contains('dark-mode')) ? 'Light Mode' : 'Dark Mode';
 
-    const submitButton = document.getElementById('submitButton');
-    submitButton.classList.toggle('dark-mode-button');
-    }
-);
+//     const submitButton = document.getElementById('submitButton');
+//     submitButton.classList.toggle('dark-mode-button');
+
+document.getElementById('toggleDarkLight').addEventListener('click', function() {
+    const body = document.getElementById('mainBody');
+    const isDarkMode = body.classList.contains('dark-mode');
+    
+    // Toggle dark mode class
+    body.classList.toggle('dark-mode', !isDarkMode);
+
+    // Update the button text based on the mode
+    this.innerText = isDarkMode ? 'Dark Mode' : 'Light Mode';
+
+    // Save the selected mode to local storage
+    const selectedMode = isDarkMode ? 'light' : 'dark';
+    localStorage.setItem('selectedMode', selectedMode);
+    //editss end here
+
+    // Toggle dark mode for cards
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        card.classList.toggle('dark-mode-card');
+    });
+
+    // Toggle dark mode for results text
+    const resultsText = document.querySelector('.results-text');
+    resultsText.classList.toggle('dark-mode-text');
+
+    // Toggle dark mode for the footer
+    const footer = document.querySelector('.footer');
+    footer.classList.toggle('dark-mode');
+});
 
 document.getElementById('title').addEventListener('click', function() {
     window.location.href = 'home.html';
@@ -91,7 +119,10 @@ function findTopIndices(arr) {
 
 }
 
-document.getElementById('submitNew').addEventListener('click', function() {
+
+window.finalProducts = []
+
+document.getElementById('submitNew').addEventListener('click', function() { 
     var filteredProducts = []
 
     for (let i = 0; i < products.length - 1; i++){
@@ -135,10 +166,13 @@ document.getElementById('submitNew').addEventListener('click', function() {
     }
 
     for (let i = 0; i < presetMax; i++){
-        console.log(filteredProducts[indexes[i]][1])
+        window.finalProducts.push(filteredProducts[indexes[i]][1])
+        console.log( window.finalProducts)
     };
-
+    localStorage.setItem('finalProducts', JSON.stringify(window.finalProducts));
     setTimeout(function() {
         window.location.href = 'results.html';
-    }, 10000);
+    }, 250)
+    
 });
+

@@ -9,15 +9,39 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
 
 
-    <title>OPP</title>
+    <title>LUMEN</title>
     
 
 </head>
 
-<body>
+<body id="mainBody">
+
+    <script>document.addEventListener('DOMContentLoaded', function() {
+        // Retrieve settings from local storage
+        const selectedMode = localStorage.getItem('selectedMode');
+    
+        // Apply settings to the new page
+        if (selectedMode === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    });
+    
+    document.getElementById('toggleDarkLight').addEventListener('click', function() {
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        
+        // Toggle dark mode class
+        document.body.classList.toggle('dark-mode', !isDarkMode);
+    
+        // Update the button text based on the mode
+        this.innerText = isDarkMode ? 'Dark Mode' : 'Light Mode';
+    
+        // Save the selected mode to local storage
+        const selectedMode = isDarkMode ? 'light' : 'dark';
+        localStorage.setItem('selectedMode', selectedMode);
+    });</script>
    
     <div class="header">
-        <h1 id="title">OPP</h1>
+        <h1 id="title">LUMEN</h1>
         <div>
             <button class="toggle-button" id="toggleDarkLight">Dark Mode</button>
         </div>
@@ -67,5 +91,23 @@
         <p>Authored by THUG 2024 (Truly Humble Under Git 2024) </p>
     </footer>
      
-     <script src="script.js"></script>
+    
+     
+
+     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve settings from local storage
+            const selectedMode = localStorage.getItem('selectedMode');
+        
+            // Apply settings to the body
+            if (selectedMode === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('toggleDarkLight').innerText = 'Light Mode';
+            } else {
+                document.body.classList.remove('dark-mode');
+                document.getElementById('toggleDarkLight').innerText = 'Dark Mode';
+            }
+        });
+        </script>
+         <script src="script.js"></script>
 </body>
