@@ -7,7 +7,7 @@ const CSVToArray = (data, delimiter = ',', omitFirstRow = false) =>
     .split('\n')
     .map(v => v.split(delimiter));
 
-var dict = {"Product Type":0,"Product Name":1,"Price ($)":2,"Oily Skin":3,"Skin Tone":4,"Hydration":5,"Brightening":6,"Acne":7,"Dark Spots":8,"Wrinkles":9,"Eye Circles":10,"Scarring":11,"Blackheads":12,"Budget":13,"Fragrances":14,"Silicone":15,"Alcohol":16,"Cruelty":17,"Aluminium":18}
+var dict = {"Product Type":0,"Product Name":1,"Price ($)":2,"Oily Skin":3,"Skin Tone":4,"Hydration":5,"Brightening":6,"Acne":7,"Blackheads":8,"Wrinkles":9,"Blemishes":10,"Scarring":11,"N/A":12,"Budget":13,"Fragrances":14,"Silicones":15,"Alcohols":16,"Cruelty":17,"Aluminium":18}
 
 var products = CSVToArray(
 "Cleanser,First Aid Beauty Pure Skin Face Cleanser,32.5,7,6,8,6,7,8,5,5,7,6,5,1,1,0,1,1\n"+
