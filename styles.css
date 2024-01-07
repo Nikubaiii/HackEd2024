@@ -19,8 +19,6 @@ h1{
     margin-right: auto;
 }
 
-
-
 .dark-mode .header {
     background-color: #333;
 }
@@ -29,7 +27,6 @@ h1{
     background-color: #333;
     color: #f5f5f5;
 }
-
 
 .dropdown {
     position:absolute;
@@ -55,10 +52,10 @@ h1{
 }
 
 .help-text {
-text-align:center;
-font-size: 20px;
-margin-bottom: -200px;
-margin-top: 5vmax;
+    text-align:center;
+    font-size: 20px;
+    margin-bottom: -130px;
+    margin-top: 5vmax;
 }
 
 .allergy-q-wrapper{
@@ -68,56 +65,47 @@ margin-top: 5vmax;
     margin-bottom: -5px;
 }
 
+/* For THINGS TO AVOID header */
 .allergy-q{
-text-align:center;
-font-size: 20px;
-margin-bottom: 20px;
-margin-top: 1px;
-margin-bottom: -15px; 
-
-/* text-align:center;
-font-size: 20px;
-margin-bottom: -200px;
-margin-top: 10vmax; */
+    text-align:center;
+    font-size: 20px;
+    margin-bottom: 20px;
+    margin-top: 1px;
+    margin-bottom: -15px; 
 }
 
+/* For SELECTION OPTIONS buttons */
 .middle-buttons {
     display: flex;
     justify-content: center;
     gap: 2.5px;
-    margin-top: 50px; 
+    margin-top: 60px; 
     align-items: center; 
-    height: 50vh; 
+    height: 30vh; 
 }
 
+/* For FILTER buttons */
 .middle-buttons2 {
     display: flex;
     justify-content: center;
     gap: 2.5px;
-    margin-top: 40px; 
+    margin-top: 35px; 
     align-items: center; 
     margin-bottom: 100px;
-    /* height: 50vh;  */
 }
 
-.dropdown,
-.dropdown2 {
-    display: flex;
-    justify-content: center;
-    width: auto;
-    max-width: 100%;
-}
-
+/* For SELECTION OPTIONS buttons */
 .dropdown-button {
-        background-color: #e0e0e0;
-        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
-        border: none;
-        padding: 10px 20px;
-        cursor: pointer;
-        font-size: 14px;
-        border-radius: 50px;
-        width: 100px;
-        transition: background-color 0.2s;
+    background-color: #e0e0e0;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 50px;
+    width: 110px; /* Adjust the number to set the desired number of buttons per row */
+    transition: background-color 0.2s;
+    margin: 0 5px;
 }
 
 .dark-mode .dropdown-button {
@@ -131,46 +119,26 @@ margin-top: 10vmax; */
         box-shadow: 0px 15px 20px #954d0079;
 }
 
+/* For DARK MODE button */
 .toggle-button {
         background-color: #f0f0f0;
         border: none;
         padding: 10px 20px;
         cursor: pointer;
         font-size: 14px;
-        transition: background-color 0.3s;
-    
-        
+        transition: background-color 0.3s;       
 }
 
+/* For DARK MODE button */
 .toggle-button:hover {
         background-color: #e0e0e0;
 }
 
-
 .dropdown-select {
         width: 100%;
         padding: 10px;
-        font-size: 16px;
-        
+        font-size: 16px;      
 }
-
-.small-font .dropdown-select {
-        font-size: 14px;
-}
-
-.dropdown-button.small-font {
-    width: 97px; 
-}
-
-.dropdown-button.normal-font {
-    width: 105px; 
-}    
-
-.dropdown-button.large-font {
-    width: 120px;
-}
-
-/* Submit Button */
 
 .wrap {
     height: 100%;
@@ -178,8 +146,9 @@ margin-top: 10vmax; */
     align-items: center;
     justify-content: center;
 }
-  
-.button {
+ 
+/* For SUBMIT button */
+.button {  
     width: 140px;
     height: 45px;
     color: #000;
@@ -191,7 +160,8 @@ margin-top: 10vmax; */
     cursor: pointer;
     outline: none;
 }
-  
+ 
+/* For SUBMIT button */
 .button:hover {
     background-color: #954d00;
     box-shadow: 0px 15px 20px #954d0079;
@@ -212,7 +182,7 @@ margin-top: 10vmax; */
 }
 
 .footer {
-    margin-top: 100px;
+    margin-top: 150px;
     text-align: center;
    }
 
