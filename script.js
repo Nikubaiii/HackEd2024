@@ -1,17 +1,15 @@
 const desires = []
 const despise = []
 
-const CSVToArray = (data, delimiter = ',', omitFirstRow = true) =>
+const CSVToArray = (data, delimiter = ',', omitFirstRow = false) =>
   data
     .slice(omitFirstRow ? data.indexOf('\n') + 1 : 0)
     .split('\n')
     .map(v => v.split(delimiter));
 
-CSVToArray('a,b\nc,d'); // [['a', 'b'], ['c', 'd']];
-CSVToArray('a;b\nc;d', ';'); // [['a', 'b'], ['c', 'd']];
-CSVToArray('col1,col2\na,b\nc,d', ',', true); // [['a', 'b'], ['c', 'd']];
-console.log(CSVToArray(
-"Product Type,Product Name,Price ($),Oily Skin score,Skin tone score,Hydration score,Brightening score,Acne score,Dark spots score,Wrinkles score,Eye circles score,Scarring score,Blackhead score,Budget score,Fragrance-free,Silicone-free,Alcohol-free,Cruelty-free,Aluminum-free\n"+
+var dict = {"Product Type":0,"Product Name":1,"Price ($)":2,"Oily Skin":3,"Skin Tone":4,"Hydration":5,"Brightening":6,"Acne":7,"Dark Spots":8,"Wrinkles":9,"Eye Circles":10,"Scarring":11,"Blackheads":12,"Budget":13,"Fragrances":14,"Silicone":15,"Alcohol-free":16,"Cruelty-free":17,"Aluminum-free":18}
+
+var products = CSVToArray(
 "Cleanser,First Aid Beauty Pure Skin Face Cleanser,32.5,7,6,8,6,7,8,5,5,7,6,5,1,1,0,1,1\n"+
 "Cleanser,SkinCeuticals GENTLE CLEANSER,56,5,7,9,8,9,5,7,6,6,8,5,1,0,1,0,1\n"+
 "Cleanser,CeraVe HYDRATING Daily Face Wash,20,8,5,7,6,5,7,5,6,8,8,9,1,1,0,0,1\n"+
@@ -40,7 +38,8 @@ console.log(CSVToArray(
 "Serum,Olay Regenerist Micro-Sculpting Serum,31.6,9,8,7,9,5,7,6,8,5,9,6,1,1,0,0,1\n"+
 "Serum,Olay Vitamin C + Peptide 24 Serum,46,6,9,8,8,9,9,8,9,7,8,6,0,1,0,0,1\n"+
 "Serum,Perricone MD COLD PLASMA PLUS+ ADVANCED SERUM CONCENTRATE,195.3,5,7,6,6,7,8,7,7,6,6,2,1,1,1,0,1\n"+
-"Serum,Bigger Than Beauty Liquid Brilliance™ Super Serum,79,8,6,9,7,8,6,5,5,9,7,5,1,1,0,1,1\n",",",true));
+"Serum,Bigger Than Beauty Liquid Brilliance™ Super Serum,79,8,6,9,7,8,6,5,5,9,7,5,1,1,0,1,1\n",",",false);
+
 
 document.getElementById('toggleDarkLight').addEventListener('click', function() {
     document.body.classList.toggle('dark-mode');
@@ -133,24 +132,47 @@ clickedButton.classList.add('active');
 const dropdownButtons = document.querySelectorAll('.dropdown-button');
 
 dropdownButtons.forEach(function(btn) {
-btn.addEventListener('click', function() {
-this.classList.toggle('selected');
-desires.push(this.id)
-console.log(desires)
-});
+    
+    btn.addEventListener('click', function() {
+
+        this.classList.toggle('selected');
+        this.classList[1] === 'selected' ? desires.push(this.id) : desires.splice(desires.indexOf(this.id),1);
+        console.log(desires);
+    
+    });
+
 });
 
+function findTop5Indices(arr) {
+    const indices = Array.from(arr.keys()); // Generate initial indices
+    indices.sort((a, b) => arr[b] - arr[a]); // Sort indices based on array values
+
+    // Return the first 5 indices (top 5 values)
+    return indices.slice(0, 5);
+}
 
 document.getElementById('submitNew').addEventListener('click', function() {
-    const text = generateText(); // Function to generate text content for the file
+    var vals = []
 
-    setTimeout(function() {
-        window.location.href = 'results.html';
-    }, 250);
+    for (let i = 0; i < products.length-1; i++){
+        var val = 0
+
+        for (let j = 0; j < desires.length; j++){
+            val += Number(products[i][dict[desires[j]]])
+        };
+        
+        vals.push(val)
+    };
+
+    console.log(vals)
+
+    indexes = findTop5Indices(vals)
+
+    for (let i = 0; i < 5; i++){
+        console.log(products[indexes[i]][1])
+    };
+
+    // setTimeout(function() {
+    //     window.location.href = 'results.html';
+    // }, 10000);
 });
-
-function generateText() {
-    // Generate text content for the file based on user inputs
-    // Concatenate 'Needs' and 'Allergens' data into a string
-    return `Needs: [list of needs]\nAllergens: [list of allergens]`;
-}
